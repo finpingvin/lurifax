@@ -5,7 +5,7 @@ defmodule LurifaxWeb.CommunityLive do
   require Logger
 
   @impl true
-  def mount(_params, session, socket) do
+  def mount(_params, _session, socket) do
     Dealer.register_community()
     {:ok, assign(socket, community_cards: [], query: "", results: %{})}
   end

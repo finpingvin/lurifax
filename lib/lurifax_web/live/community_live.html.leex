@@ -2,7 +2,7 @@
   <h2>Community</h2>
   <div>
     <%= for card <- @community_cards do %>
-      <%= live_component @socket, CardComponent, card: card %>
+      <%= live_component CardComponent, card: card %>
     <% end %>
   </div>
   <button phx-click="deal">Deal</button>

@@ -33,18 +33,19 @@ defmodule Lurifax.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.1"},
-      {:phoenix_live_view, "~> 0.12.0"},
+      {:phoenix, "~> 1.6"},
+      {:phoenix_live_view, "~> 0.17"},
       {:floki, ">= 0.0.0", only: :test},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.2.0"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:phoenix_html, "~> 3.2"},
+      {:phoenix_live_reload, "~> 1.3", only: :dev},
+      {:phoenix_live_dashboard, "~> 0.6"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
+      {:gettext, "~> 0.19"},
+      {:jason, "~> 1.3"},
+      {:plug_cowboy, "~> 2.5"},
       { :elixir_uuid, "~> 1.2" },
+      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
     ]
   end
 
@@ -56,7 +57,8 @@ defmodule Lurifax.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"]
+      setup: ["deps.get", "cmd npm install --prefix assets"],
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
     ]
   end
 end
