@@ -1,6 +1,12 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "../node_modules/nprogress/nprogress.css";
+
+[x-cloak] {
+  display: none !important;
+}
 
 /* LiveView specific classes for your customizations */
 .invalid-feedback {
@@ -60,7 +66,6 @@
   cursor: pointer;
 }
 
-
 /* Alerts and form errors */
 .alert {
   padding: 15px;
@@ -88,9 +93,4 @@
 }
 .alert:empty {
   display: none;
-}
-
-/* Cards */
-.card {
-  width: 150px;
 }

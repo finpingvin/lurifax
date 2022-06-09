@@ -46,6 +46,7 @@ defmodule Lurifax.MixProject do
       {:plug_cowboy, "~> 2.5"},
       { :elixir_uuid, "~> 1.2" },
       {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
     ]
   end
 
@@ -58,7 +59,7 @@ defmodule Lurifax.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "cmd npm install --prefix assets"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
     ]
   end
 end

@@ -1,5 +1,6 @@
 defmodule Poker.Dealer do
   use GenServer
+  require Logger
   alias Poker.Deck
 
   ###
@@ -18,6 +19,10 @@ defmodule Poker.Dealer do
 
   def get_player_cards(player_id) do
     GenServer.call(__MODULE__, {:player_cards, player_id})
+  end
+
+  def get_community_cards() do
+    GenServer.call(__MODULE__, :community_cards)
   end
 
   def register_community() do
@@ -79,6 +84,12 @@ defmodule Poker.Dealer do
 
     player = find_player(state.players, player_id)
     {:reply, player.cards, state}
+  end
+
+  @impl true
+  def handle_call(:community_cards, _sender, state) do
+    Logger.info "Sending community cards"
+    {:reply, state.community, state}
   end
 
   @impl true
@@ -157,7 +168,7 @@ defmodule Poker.Dealer do
     {drawn, deck} = Deck.draw_cards(how_many, state.deck)
 
     state = state
-      |> Map.put(:community, drawn ++ state.community)
+      |> Map.put(:community, state.community ++ drawn)
       |> Map.put(:deck, deck)
     dispatch_community_cards(state.community)
     state

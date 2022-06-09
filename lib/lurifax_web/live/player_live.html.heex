@@ -1,0 +1,10 @@
+<section>
+  <h2>Player</h2>
+  <div>
+    <div class="flex flex-row space-x-4">
+      <%= for card <- @player_cards do %>
+        <%= live_component CardComponent, card: card %>
+      <% end %>
+    </div>
+  </div>
+</section>

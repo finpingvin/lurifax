@@ -1,0 +1,20 @@
+<section>
+  <h2>Community</h2>
+  <div>
+    <%#
+      Make two containers to avoid liveviews smart dom patching to mix these together.
+      That messes up alpine state.
+    %>
+    <div class="flex flex-row space-x-4">
+      <%= for card <- @community_cards do %>
+        <%= live_component CardComponent, card: card %>
+      <% end %>
+    </div>
+    <div class="flex flex-row space-x-4">
+      <%= for card <- @previous_cards do %>
+        <%= live_component PreviousCardComponent, card: card %>
+      <% end %>
+    </div>
+  </div>
+  <button phx-click="deal">Deal</button>
+</section>

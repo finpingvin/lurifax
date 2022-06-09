@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "alpinejs": "^3.10.2",
     "nprogress": "^0.2.0"
   }
 }
